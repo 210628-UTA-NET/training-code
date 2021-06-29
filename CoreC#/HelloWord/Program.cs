@@ -13,7 +13,7 @@ namespace HelloWord
     {
         //We can use underscores for private fields to reference them easier in our code
         private static string _first = "Hello";
-        private static string _last = "World!";
+        public static string _last = "World!";
 
         /*
             -Main method is the first method that will be called/run. Whenever you do the command dotnet run
@@ -44,6 +44,8 @@ namespace HelloWord
             Console.WriteLine("Hello" == "Hello");
 
             Collection.CollectionMain();
+
+            OOP.OOPMain();
         }
     }
 
