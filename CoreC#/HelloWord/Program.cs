@@ -41,6 +41,9 @@ namespace HelloWord
             Console.WriteLine(objHouse.Price);
             objHouse.Name = "Stephen's House";
             Console.WriteLine(objHouse.Name);
+            Console.WriteLine("Hello" == "Hello");
+
+            Collection.CollectionMain();
         }
     }
 
