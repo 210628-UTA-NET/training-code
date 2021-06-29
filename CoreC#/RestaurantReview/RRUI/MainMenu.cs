@@ -22,7 +22,7 @@ namespace RRUI
                 case "0":
                     return "Exit";
                 case "1":
-                    return "Restaurant";
+                    return "RestaurantMenu";
                 default:
                     return "Unknown";
             }

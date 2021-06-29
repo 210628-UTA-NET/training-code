@@ -11,6 +11,7 @@ namespace RRUI
             bool repeat = true;
             string currentMenu = "MainMenu";
 
+            
             while (repeat)
             {
                 Console.Clear();
@@ -19,8 +20,11 @@ namespace RRUI
 
                 switch (currentMenu)
                 {
-                    case "Restaurant":
-                        Console.WriteLine("You are currently inside Restaurant menu");
+                    case "MainMenu":
+                        restMenu = new MainMenu();
+                        break;
+                    case "RestaurantMenu":
+                        restMenu = new RestaurantMenu();
                         break;
                     case "Exit":
                         repeat = false;
