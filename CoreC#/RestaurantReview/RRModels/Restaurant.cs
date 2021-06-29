@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace RRModel
 {
@@ -10,11 +12,14 @@ namespace RRModel
         public string Name { get; set; }
         public string City {
 
-        get; 
+            get
+            {
+                return _city;
+            } 
 
             set
             {
-                if (!Regex.isMatch(value, "@^[A-Za-z .]+$"))
+                if (!Regex.IsMatch(value, "@^[A-Za-z .]+$"))
                 {
                     throw new Exception("City can only hold letters!");
                 }
