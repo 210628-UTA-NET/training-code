@@ -8,8 +8,15 @@ namespace RRModel
     {
         private string _city;
         public Restaurant()
-        { }
-        public string Name { get; set; }
+        {
+            Name = "Default";
+        }
+
+        public Restaurant(string p_name)
+        {
+            Name = p_name;
+        }
+        public string Name { get; set;}
         public string City {
 
             get
