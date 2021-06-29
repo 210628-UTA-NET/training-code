@@ -37,7 +37,7 @@ namespace HelloWord
             Console.WriteLine(objHouse.getColor());
             objHouse.setColor("Blue");
             Console.WriteLine(objHouse.getColor());
-            objHouse.Price = 8000;
+            objHouse.Price = 803;
             Console.WriteLine(objHouse.Price);
             objHouse.Name = "Stephen's House";
             Console.WriteLine(objHouse.Name);
