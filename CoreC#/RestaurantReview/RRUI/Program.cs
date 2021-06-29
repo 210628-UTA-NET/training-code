@@ -1,4 +1,5 @@
 ﻿using System;
+using RRModel;
 
 namespace RRUI
 {
@@ -6,7 +7,29 @@ namespace RRUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            IMenu restMenu = new MainMenu();
+            bool repeat = true;
+            string currentMenu = "MainMenu";
+
+            while (repeat)
+            {
+                Console.Clear();
+                restMenu.Menu();
+                currentMenu = restMenu.YourChoice();
+
+                switch (currentMenu)
+                {
+                    case "Restaurant":
+                        Console.WriteLine("You are currently inside Restaurant menu");
+                        break;
+                    case "Exit":
+                        repeat = false;
+                        break;
+                    default:
+                        Console.WriteLine("Cannot process what you want please try again");
+                        break;
+                }
+            }
         }
     }
 }
