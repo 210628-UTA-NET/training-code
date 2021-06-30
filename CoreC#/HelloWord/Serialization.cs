@@ -14,8 +14,8 @@ namespace HelloWord
             //Create house object to be serialized
             House house1 = new House()
             {
-                Name = "Stephen",
-                Price = 500
+                Name = "Micheal",
+                Price = 900
             };
             house1.setColor("Red");
 
