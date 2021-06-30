@@ -25,7 +25,8 @@ namespace RRUI
                     return MenuType.RestaurantMenu;
                 default:
                     Console.WriteLine("Input was not correct");
-                    Thread.Sleep(1000);
+                    Console.WriteLine("Press Enter to continue");
+                    Console.ReadLine();
                     return MenuType.RestaurantMenu;
             }
         }

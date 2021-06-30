@@ -16,7 +16,7 @@ namespace RRUI
         {
             //Console.ReadLine() method will record what you type in the terminal
             string userInput = Console.ReadLine();
-            
+
             switch (userInput)
             {
                 case "0":
@@ -24,6 +24,9 @@ namespace RRUI
                 case "1":
                     return MenuType.RestaurantMenu;
                 default:
+                    Console.WriteLine("Input was not correct");
+                    Console.WriteLine("Press Enter to continue");
+                    Console.ReadLine();
                     return MenuType.MainMenu;
             }
         }
