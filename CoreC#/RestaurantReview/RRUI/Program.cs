@@ -9,7 +9,7 @@ namespace RRUI
         {
             IMenu restMenu = new MainMenu();
             bool repeat = true;
-            string currentMenu = "MainMenu";
+            MenuType currentMenu = MenuType.MainMenu;
 
             
             while (repeat)
@@ -20,13 +20,13 @@ namespace RRUI
 
                 switch (currentMenu)
                 {
-                    case "MainMenu":
+                    case MenuType.MainMenu:
                         restMenu = new MainMenu();
                         break;
-                    case "RestaurantMenu":
+                    case MenuType.RestaurantMenu:
                         restMenu = new RestaurantMenu();
                         break;
-                    case "Exit":
+                    case MenuType.Exit:
                         repeat = false;
                         break;
                     default:

@@ -1,5 +1,11 @@
 namespace RRUI
 {
+    public enum MenuType
+    {
+        MainMenu,
+        RestaurantMenu,
+        Exit
+    }
     public interface IMenu
     {
         /// <summary>
@@ -11,6 +17,6 @@ namespace RRUI
         /// This methog will record the user's choice and change your meny based on their input
         /// </summary>
         /// <returns>Returns a value that will dictate what menu to change to</returns>
-        string YourChoice();
+        MenuType YourChoice();
     }
 }

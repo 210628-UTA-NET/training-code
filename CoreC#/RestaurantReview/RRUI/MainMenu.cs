@@ -12,7 +12,7 @@ namespace RRUI
             Console.WriteLine("[0] Exit");
         }
 
-        public string YourChoice()
+        public MenuType YourChoice()
         {
             //Console.ReadLine() method will record what you type in the terminal
             string userInput = Console.ReadLine();
@@ -20,11 +20,11 @@ namespace RRUI
             switch (userInput)
             {
                 case "0":
-                    return "Exit";
+                    return MenuType.Exit;
                 case "1":
-                    return "RestaurantMenu";
+                    return MenuType.RestaurantMenu;
                 default:
-                    return "Unknown";
+                    return MenuType.MainMenu;
             }
         }
     }
