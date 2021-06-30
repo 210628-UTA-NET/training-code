@@ -1,4 +1,6 @@
 ﻿using System;
+using RRBL;
+using RRDL;
 using RRModel;
 
 namespace RRUI
@@ -25,6 +27,9 @@ namespace RRUI
                         break;
                     case MenuType.RestaurantMenu:
                         restMenu = new RestaurantMenu();
+                        break;
+                    case MenuType.ShowRestaurantMenu:
+                        restMenu = new ShowRestaurantMenu(new RestaurantBL(new Repository()));
                         break;
                     case MenuType.Exit:
                         repeat = false;
