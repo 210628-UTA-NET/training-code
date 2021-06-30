@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Text.Json;
 using HouseFunction;
 
@@ -23,7 +24,25 @@ namespace HelloWord
 
             Console.WriteLine(jsonString);
 
-            
+            //Store this jsonString into a JSON file
+            File.WriteAllText(_filePath, jsonString);
+
+            //Deserialize the object we just stored
+            try
+            {
+                //ReadAllText method will read the file that you gave
+                jsonString = File.ReadAllText(_filePath);
+                //Deserialize method will deserialize the jsonString into the object that you specified <T>
+                House house2 = JsonSerializer.Deserialize<House>(jsonString);
+
+                //Just to see if we got the same object that was stored in our JSON file
+                Console.WriteLine(house2);
+            }
+            catch (System.Exception)
+            {
+                //Will catch the error if the file can't be found by the given path
+                Console.WriteLine("The file used to store your information is corrupt");
+            }
 
         }
     }
