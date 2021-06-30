@@ -4,6 +4,7 @@ namespace RRUI
     {
         MainMenu,
         RestaurantMenu,
+        ShowRestaurantMenu,
         Exit
     }
     public interface IMenu
