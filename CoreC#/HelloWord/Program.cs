@@ -48,6 +48,8 @@ namespace HelloWord
             OOP.OOPMain();
 
             BoxingAndUnboxing.BoxingAndUnboxingMain();
+
+            Serialization.SerializationMain();
         }
     }
 
