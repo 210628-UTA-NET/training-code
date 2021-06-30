@@ -22,7 +22,7 @@ namespace RRUI
                 case "0":
                     return MenuType.MainMenu;
                 case "1":
-                    return MenuType.RestaurantMenu;
+                    return MenuType.ShowRestaurantMenu;
                 default:
                     Console.WriteLine("Input was not correct");
                     Console.WriteLine("Press Enter to continue");
