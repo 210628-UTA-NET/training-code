@@ -26,7 +26,7 @@ namespace RRModel
 
             set
             {
-                if (!Regex.IsMatch(value, "@^[A-Za-z .]+$"))
+                if (Regex.IsMatch(value, "@^[A-Za-z .]+$"))
                 {
                     //This will throw an exception whenever you try to store the city property with numbers
                     throw new Exception("City can only hold letters!");
