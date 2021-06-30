@@ -15,11 +15,12 @@ namespace HelloWord
 
         public string Name { get; set; }
         public string Color { get; set; }
+        public string Talk { get; set; }
 
         //virtual tells the compiler that this method will be overriden by the derived class
-        public virtual void Speak()
+        public virtual string Speak()
         {
-            Console.WriteLine("Speaking");
+            return "Talking";
         }
     }
 
@@ -36,10 +37,13 @@ namespace HelloWord
 
         //This is an example of method overriding in C#
         //overrride tells the compiler that this method will replace (override) the implementation details of the base class
-        public override void Speak()
+        public override string Speak()
         {
-            base.Speak();
-            Console.WriteLine("Bark");
+            //You should call upon the base class implementations of this method to not break logic in your code
+            this.Talk = base.Speak();
+
+            this.Talk += "Barking";
+            return this.Talk;
         }
 
         //This is an example of method overloading
@@ -68,12 +72,23 @@ namespace HelloWord
             };
 
             //Using constructor
-            Dog dog3 = new Dog("Brown", "Jeffery");
+            Animal dog3 = new Dog("Brown", "Jeffery");
+            Animal ani1 = new Animal();
+            Dog dog4 = new Dog();
 
-            dog1.Speak();
-            dog2.Speak();
-            dog3.Speak();
-            dog1.Speak("The dog is speaking OMG");
+            if (ani1.Speak() == "Talking")
+            {
+                
+            }
+            else
+            {
+                throw new Exception("Did not get Talking even though it is expected");
+            }
+
+
+            // dog2.Speak();
+            // dog3.Speak();
+            // dog1.Speak("The dog is speaking OMG");
         }
     }
 }
