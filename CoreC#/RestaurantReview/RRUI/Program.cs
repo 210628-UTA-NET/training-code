@@ -32,6 +32,9 @@ namespace RRUI
                     case MenuType.ShowRestaurantMenu:
                         restMenu = menuFactory.GetMenu(MenuType.ShowRestaurantMenu);
                         break;
+                    case MenuType.AddRestaurantMenu:
+                        restMenu = menuFactory.GetMenu(MenuType.AddRestaurantMenu);
+                        break;
                     case MenuType.Exit:
                         repeat = false;
                         break;

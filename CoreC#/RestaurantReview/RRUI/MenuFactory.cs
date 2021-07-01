@@ -18,6 +18,8 @@ namespace RRUI
                     //RestaurantBL needs the Repository object in the parameter because it depends on that object to be able to run
                     //This is call Dependency Injection
                     return new ShowRestaurantMenu(new RestaurantBL(new Repository()));
+                case MenuType.AddRestaurantMenu:
+                    return new AddRestaurantMenu();
                 default:
                     return null;
             }
