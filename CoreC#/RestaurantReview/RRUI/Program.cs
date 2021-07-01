@@ -12,6 +12,7 @@ namespace RRUI
             IMenu restMenu = new MainMenu();
             bool repeat = true;
             MenuType currentMenu = MenuType.MainMenu;
+            IFactory menuFactory = new MenuFactory();
 
             
             while (repeat)
@@ -23,13 +24,13 @@ namespace RRUI
                 switch (currentMenu)
                 {
                     case MenuType.MainMenu:
-                        restMenu = new MainMenu();
+                        restMenu = menuFactory.GetMenu(MenuType.MainMenu);
                         break;
                     case MenuType.RestaurantMenu:
-                        restMenu = new RestaurantMenu();
+                        restMenu = menuFactory.GetMenu(MenuType.RestaurantMenu);
                         break;
                     case MenuType.ShowRestaurantMenu:
-                        restMenu = new ShowRestaurantMenu(new RestaurantBL(new Repository()));
+                        restMenu = menuFactory.GetMenu(MenuType.ShowRestaurantMenu);
                         break;
                     case MenuType.Exit:
                         repeat = false;
