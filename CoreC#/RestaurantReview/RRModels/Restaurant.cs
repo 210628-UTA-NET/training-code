@@ -7,6 +7,7 @@ namespace RRModel
     public class Restaurant
     {
         private string _city;
+
         public Restaurant()
         {
             Name = "Default";
@@ -16,6 +17,7 @@ namespace RRModel
         {
             Name = p_name;
         }
+        public int Id { get; set; }
         public string Name { get; set;}
         public string City {
 
