@@ -50,6 +50,8 @@ namespace HelloWord
             BoxingAndUnboxing.BoxingAndUnboxingMain();
 
             Serialization.SerializationMain();
+
+            LINQ.LINQMain();
         }
     }
 
