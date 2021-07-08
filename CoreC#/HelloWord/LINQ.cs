@@ -22,7 +22,6 @@ namespace HelloWord
             }
 
             //Method Syntax way
-            
             var queryMethodResult = numbers.Where(num => num%2==0);
 
             Console.WriteLine("=========");
