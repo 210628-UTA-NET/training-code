@@ -1,0 +1,31 @@
+th {
+  color: #fdfd96;
+}
+th:hover {
+  font-family: cursive;
+  background-color: rgb(6, 52, 94);
+}
+
+th::first-letter {
+  font-size: xx-large;
+}
+/* 
+    Different kinds of selectors:
+    1. Simple selectors
+        a. tag/element selectors - use the name of the tag/element to apply styles
+        b. id selectors - apply style via the id of an element, #idName {rules go here}
+        c. class selectors - apply styles to a class, a class is made up of multiple elements
+            - .className {rules gor here}
+        d. pseudo-classes - apply style to elements depending on their state 
+            - th:hover
+        e. pseudo-elements - used to style specific parts of an element
+            - th::first-letter
+    2. Combinator selectors
+        - select elements based on a relationship
+        a. Child descendant
+        b. Sibling 
+        c. Attribute selectors
+        d. Multiple selector - when you apply the same style for different kinds of selectors
+            - tr, th:hover, p {apply a set of rules here}
+    4. Wildcard selector - *
+*/

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- contains meta data about your webpage -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro 2 the web</title>
+    <style>
+        tbody {
+            color: green;
+        }
+
+        th {
+            color: grey !important;
+        }
+    </style>
+    <link rel="stylesheet" href="index.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- contains the actual content of the page -->
+    <div class="container">
+        <!--
+            We have a thing called attributes that help in identifying elements (like the class attribute as well
+            as the id attribute), some attributes are also used to 
+            format your element (the style attribute), and some define important aspects of your element
+            (the href attribute of an anchor tag or the src attribute of a img tag).
+
+            You have 2 kinds of tags (structurally speaking):
+            1.self closing tags like <br/> <img/>
+            2.others <a></a>
+
+            you also have 2 kinds of tags (nomencleture speaking):
+            1. semantic tags
+            2. the rest
+
+            you have two kinds of elements (space):
+            1. inline like <span> </span> is your generic inline element
+            2. block like <div> </div> is your generic block element
+            * block elements, by default, their width is the entire viewport. If you append another element
+            beside a block element that element would, by default, be rendered below that element. While span 
+            elements are more social, they don't need as much space. they can exist beside other elements as
+            long as the space permits. 
+
+            elements vs tags?
+            Elements are: <tag> content </tag>
+            Tags are: <tag>
+            
+            head vs header vs heading?
+            head - meta data
+            header vs heading?
+            header - semantic heading
+            heading - has 6 levels, these are your: h1, h2, h3, etc. 
+
+            2 ways to present a collection of data in your page:
+            1. Lists
+                a. unordered lists
+                b. ordered lists
+                c. description lists
+            2. Tables
+        -->
+        <h1 class="jumbotron">
+            Hello World!
+        </h1>
+        <table class="table">
+            <thead>
+                <th>Name</th>
+                <th>Favorite Color</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Marielle</td>
+                    <td>Green</td>
+                </tr>
+                <tr>
+                    <td>Eden</td>
+                    <td>Yellow</td>
+                </tr>
+                <tr>
+                    <td>Stephen</td>
+                    <td style="color: blue;">Blue</td>
+                    <td>Got7</td>
+                </tr>
+            </tbody>
+        </table>
+        <div> this is a div</div>
+        <span> this is a span </span>
+        <span> another span</span>
+    </div>
+</body>
+
+</html>
