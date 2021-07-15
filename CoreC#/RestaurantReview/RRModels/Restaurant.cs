@@ -40,8 +40,10 @@ namespace RRModel
         }
         public string State { get; set; }
 
+        public double Revenue { get; set; }
+
         public List<Review> Reviews { get; set; }
-        
+
         public override string ToString()
         {
             return $"Name: {Name}, City: {City}, State: {State}";
