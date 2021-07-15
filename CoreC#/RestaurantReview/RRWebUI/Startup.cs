@@ -24,6 +24,16 @@ namespace RRWebUI
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        /*
+         * This is used for dependency injection in which we state in the project what other files/projects we need for this application to run
+         * For ASP.Net MVC, services is what they used to state what your application needs
+         * Services have different lifetimes depending on when instances are created
+         * Ex:
+         *  1. Transient - A new object is create per service call. A lot of objects might be created.
+         *  2. Scoped - A new instance is created per request.
+         *  3. Singleton - An instance is shared for every request, leads to other requests waiting.
+        */
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
