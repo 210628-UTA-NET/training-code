@@ -26,7 +26,7 @@ namespace RRWebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddDbContext<RRDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Reference2DB")));
             services.AddScoped<IRepository, Repository>();
