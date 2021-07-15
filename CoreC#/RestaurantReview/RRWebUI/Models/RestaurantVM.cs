@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace RRWebUI.Models
 {
+    /*
+     * Holds the data structure of the models that you will want to use in your views
+     */
     public class RestaurantVM
     {
         public RestaurantVM()
@@ -23,6 +26,7 @@ namespace RRWebUI.Models
 
         public int Id { get; set; }
 
+        //This is a data annotation that helps with validation
         [Required]
         public string City { get; set; }
 
