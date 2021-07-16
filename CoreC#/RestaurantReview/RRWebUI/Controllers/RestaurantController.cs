@@ -57,5 +57,10 @@ namespace RRWebUI.Controllers
 
             return View();
         }
+
+        public IActionResult Edit(int p_id)
+        {
+            return View(new RestaurantVM(_restBL.GetRestaurant(p_id)));
+        }
     }
 }

@@ -18,6 +18,7 @@
                 <th>City</th>
                 <th>State</th>
                 <th>Revenue</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,9 @@
                     <td>@Html.DisplayFor(mI => item.City)</td>
                     <td>@Html.DisplayFor(modelItem => item.State)</td>
                     <td>@Html.DisplayFor(modelItem => item.Revenue)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new {p_id = item.Id}, new {@style = "color:white", @class = "btn btn-secondary"})
+                    </td>
                 </tr>
             }
         </tbody>
