@@ -18,5 +18,11 @@ namespace RRBL
         List<Restaurant> GetAllRestaurant();
 
         Restaurant AddRestaurant(Restaurant p_rest);
+        /// <summary>
+        /// It will get a specific restaurant
+        /// </summary>
+        /// <param name="p_rest">This restaurant object will be used to check the properties that should match in the database</param>
+        /// <returns>Will return the restaurant object from the database</returns>
+        Restaurant GetRestaurant(Restaurant p_rest);
     }
 }

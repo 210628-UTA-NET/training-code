@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RRDL;
 using RRModel;
@@ -26,6 +27,18 @@ namespace RRBL
         public List<Restaurant> GetAllRestaurant()
         {
             return _repo.GetAllRestaurant();
+        }
+
+        public Restaurant GetRestaurant(Restaurant p_rest)
+        {
+            Restaurant found = _repo.GetRestaurant(p_rest);
+
+            if (found == null)
+            {
+                throw new Exception("The Restaurant was not found!");
+            }
+
+            return found;
         }
     }
 }
