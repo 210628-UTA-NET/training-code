@@ -4,6 +4,7 @@ using System.IO;
 using System.Text.Json;
 using RRModel;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace RRDL
 {
@@ -29,7 +30,21 @@ namespace RRDL
 
         public Restaurant GetRestaurant(Restaurant p_rest)
         {
-            throw new System.NotImplementedException();
+            return _context.Restaurants.AsNoTracking().FirstOrDefault(rest => rest.Name == p_rest.Name
+                                                       && rest.City == p_rest.City
+                                                       && rest.State == p_rest.State);
+        }
+
+        public Restaurant GetRestaurant(int p_id)
+        {
+            return _context.Restaurants.Find(p_id);
+        }
+
+        public Restaurant UpdateRestaurant(Restaurant p_rest)
+        {
+            _context.Restaurants.Update(p_rest);
+            _context.SaveChanges();
+            return p_rest;
         }
     }
 }
