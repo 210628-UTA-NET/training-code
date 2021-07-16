@@ -6,6 +6,7 @@
 # .NET Core build folders
 bin/
 obj/
+Publish/
 
 # Common node modules locations
 /node_modules
