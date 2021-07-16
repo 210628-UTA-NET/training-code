@@ -40,5 +40,11 @@ namespace RRDL
         /// <param name="p_rest">This is the restaurant it will be updating</param>
         /// <returns></returns>
         Restaurant UpdateRestaurant(Restaurant p_rest);
+        /// <summary>
+        /// This will get all the reviews from a restaurant
+        /// </summary>
+        /// <param name="p_rest">This is the resturant it will get the reviews from</param>
+        /// <returns></returns>
+        List<Review> GetReviews(Restaurant p_rest);
     }
 }

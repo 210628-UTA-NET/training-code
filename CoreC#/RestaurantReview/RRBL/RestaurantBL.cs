@@ -40,5 +40,17 @@ namespace RRBL
 
             return found;
         }
+
+        public Restaurant GetRestaurant(int p_id)
+        {
+            Restaurant found = _repo.GetRestaurant(p_id);
+
+            if (found == null)
+            {
+                throw new Exception("The Restaurant was not found!");
+            }
+
+            return found;
+        }
     }
 }

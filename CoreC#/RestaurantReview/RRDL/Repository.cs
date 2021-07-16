@@ -40,6 +40,14 @@ namespace RRDL
             return _context.Restaurants.Find(p_id);
         }
 
+        public List<Review> GetReviews(Restaurant p_rest)
+        {
+            return _context.Reviews
+                .Where(rev => rev.RestaurantId == p_rest.Id) //This filters the review table to show only the one the matches with the correct restaurantID
+                .Select(rev => rev) //This selects each review from that filtered list
+                .ToList();//This will convert it into a List Collection
+        }
+
         public Restaurant UpdateRestaurant(Restaurant p_rest)
         {
             _context.Restaurants.Update(p_rest);

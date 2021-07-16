@@ -24,5 +24,11 @@ namespace RRBL
         /// <param name="p_rest">This restaurant object will be used to check the properties that should match in the database</param>
         /// <returns>Will return the restaurant object from the database</returns>
         Restaurant GetRestaurant(Restaurant p_rest);
+        /// <summary>
+        /// It will get a specific restaurant using the id
+        /// </summary>
+        /// <param name="p_id">The Id of the restaurant</param>
+        /// <returns>Will return the restaurant object from the database</returns>
+        Restaurant GetRestaurant(int p_id);
     }
 }

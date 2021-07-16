@@ -89,6 +89,22 @@ namespace RRTest
             }
         }
 
+        [Fact]
+        public void GetReviewsShouldGetAllReviewsFromARestaurant()
+        {
+            using (var context = new RRDBContext(_options))
+            {
+                IRepository repo = new Repository(context);
+                Restaurant test = repo.GetRestaurant(2);
+                List<Review> reviews;
+
+                reviews = repo.GetReviews(test);
+
+                Assert.NotNull(reviews);
+                Assert.Equal(2, reviews.Count);
+            }
+        }
+
         private void Seed()
         {
             using (var context = new RRDBContext(_options))
