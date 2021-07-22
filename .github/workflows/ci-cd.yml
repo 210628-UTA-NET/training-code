@@ -29,7 +29,7 @@ jobs:
       uses: highbyte/sonarscan-dotnet@v2.1.1-beta
       with:
         # The key of the SonarQube project
-        sonarProjectKey: 210628-uta-net
+        sonarProjectKey: 210628-UTA-NET_training-code
         # The name of the SonarQube project
         sonarProjectName: training-code
         sonarOrganization: 210628-uta-net
