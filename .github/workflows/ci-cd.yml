@@ -35,7 +35,7 @@ jobs:
         sonarOrganization: 210628-uta-net
         # Optional command arguments to 'dotnet build'
         dotnetBuildArguments: CoreC#/RestaurantReview/
-#         dotnetDisableTests: true
+        dotnetDisableTests: true
 #         # Optional command arguments to 'dotnet test'
 #         dotnetTestArguments: CoreC#/RestaurantReview/ --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
 #         # Optional extra command arguments the the SonarScanner 'begin' command
