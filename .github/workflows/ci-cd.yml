@@ -34,10 +34,11 @@ jobs:
         sonarProjectName: training-code
         # Optional command arguments to 'dotnet build'
         dotnetBuildArguments: CoreC#/RestaurantReview/
-        # Optional command arguments to 'dotnet test'
-        dotnetTestArguments: CoreC#/RestaurantReview/ --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-        # Optional extra command arguments the the SonarScanner 'begin' command
-        sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
+        dotnetDisableTests: true
+#         # Optional command arguments to 'dotnet test'
+#         dotnetTestArguments: CoreC#/RestaurantReview/ --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+#         # Optional extra command arguments the the SonarScanner 'begin' command
+#         sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
       # authenticating the connection to sonar cloud
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
