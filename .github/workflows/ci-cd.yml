@@ -33,6 +33,7 @@ jobs:
         # The name of the SonarQube project
         sonarProjectName: training-code
         sonarOrganization: 210628-uta-net
+        dotnetBuildArguments: CoreC#/RestaurantReview/
         dotnetDisableTests: true
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
