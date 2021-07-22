@@ -32,7 +32,7 @@ jobs:
         sonarProjectKey: 210628-uta-net
         # The name of the SonarQube project
         sonarProjectName: training-code
-        sonarOrganization: 210628-uta-net
+        sonarOrganization: 210628-UTA-NET
         # Optional command arguments to 'dotnet build'
         dotnetBuildArguments: CoreC#/RestaurantReview/
         dotnetDisableTests: true
