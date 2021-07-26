@@ -1,0 +1,49 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore CoreC#/RestaurantReview/
+    - name: Build
+      run: dotnet build CoreC#/RestaurantReview/ --configuration Release --no-restore
+#     - name: Test
+#       run: dotnet test CoreC#/RestaurantReview/ --no-build --verbosity normal
+    - name: Code Analysis
+      # You may pin to the exact commit or the version.
+      # uses: highbyte/sonarscan-dotnet@90025f8a91fb480278dbd6cf740ee9d862f7794c
+      uses: highbyte/sonarscan-dotnet@v2.1.1-beta
+      with:
+        # The key of the SonarQube project
+        sonarProjectKey: 210628-UTA-NET_training-code
+        # The name of the SonarQube project
+        sonarProjectName: training-code
+        sonarOrganization: 210628-uta-net
+        dotnetBuildArguments: CoreC#/RestaurantReview/
+        dotnetDisableTests: true
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: publish
+      run: dotnet publish CoreC#/RestaurantReview/ --configuration Release -o ./publish
+    - name: deploy
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: RRSteph # Replace with your app name
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} # Define secret variable in repository settings as per action documentation
+        package: ./publish
+
