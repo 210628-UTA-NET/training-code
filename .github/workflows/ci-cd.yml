@@ -34,7 +34,9 @@ jobs:
         sonarProjectName: training-code
         sonarOrganization: 210628-uta-net
         dotnetBuildArguments: CoreC#/RestaurantReview/
-        dotnetDisableTests: true
+        dotnetTestArguments: CoreC#/RestaurantReview/ --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+        # Optional extra command arguments the the SonarScanner 'begin' command
+        sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
