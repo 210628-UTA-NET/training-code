@@ -34,7 +34,7 @@ jobs:
         sonarProjectName: training-code
         sonarOrganization: 210628-uta-net
         dotnetBuildArguments: CoreC#/RestaurantReview/
-        dotnetDisableTests: true
+        dotnetDisableTests: false
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
