@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using RRDL;
 using RRModel;
 
@@ -24,9 +25,9 @@ namespace RRBL
             return _repo.AddRestaurant(p_rest);
         }
 
-        public List<Restaurant> GetAllRestaurant()
+        public async Task<List<Restaurant>> GetAllRestaurant()
         {
-            return _repo.GetAllRestaurant();
+            return await _repo.GetAllRestaurant();
         }
 
         public Restaurant GetRestaurant(Restaurant p_rest)

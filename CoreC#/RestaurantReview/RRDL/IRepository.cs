@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using RRModel;
 
 namespace RRDL
@@ -13,7 +14,7 @@ namespace RRDL
         /// Gets a list of Restaurants stored in our database
         /// </summary>
         /// <returns>Returns a list of Restaurant</returns>
-        List<Restaurant> GetAllRestaurant();
+        Task<List<Restaurant>> GetAllRestaurant();
 
         /// <summary>
         /// It will get a specific restaurant

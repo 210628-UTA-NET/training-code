@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using RRModel;
 
 namespace RRBL
@@ -15,7 +16,7 @@ namespace RRBL
         /// Gets all the restaurant from the database
         /// </summary>
         /// <returns>Returns a list of restaurants</returns>
-        List<Restaurant> GetAllRestaurant();
+        Task<List<Restaurant>> GetAllRestaurant();
 
         Restaurant AddRestaurant(Restaurant p_rest);
         /// <summary>

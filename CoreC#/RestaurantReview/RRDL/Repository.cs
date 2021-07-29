@@ -5,6 +5,7 @@ using System.Text.Json;
 using RRModel;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace RRDL
 {
@@ -22,10 +23,17 @@ namespace RRDL
             return p_rest;
         }
 
-        public List<Restaurant> GetAllRestaurant()
+        /*
+            First make the method into an async method using the keyword
+            Next make the return type of the method into a task
+                You have to import the namespace System.Threading.Task
+            Next use the await keyword so it knows what it needs to do in parallel in that method
+            Finally use System.Linq already made Async methods version of what you used
+        */
+        public async Task<List<Restaurant>> GetAllRestaurant()
         {
             //Method Syntax way
-            return _context.Restaurants.Select(rest => rest).ToList();
+            return await _context.Restaurants.Select(rest => rest).ToListAsync();
         }
 
         public Restaurant GetRestaurant(Restaurant p_rest)
