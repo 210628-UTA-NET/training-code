@@ -15,12 +15,12 @@ namespace RRBL
         /// <param name="p_rest">Passes the restaurant we will attach the review to</param>
         /// <param name="p_rev">The review we will add to the restaurant</param>
         /// <returns></returns>
-        Review AddReview(Restaurant p_rest, Review p_rev);
+        Task<Review> AddReview(Restaurant p_rest, Review p_rev);
         /// <summary>
         /// It will get all the reviews
         /// </summary>
         /// <param name="p_rest">Gets the reviews that is attached to that restaurant</param>
         /// <returns></returns>
-        List<Review> GetReviews(Restaurant p_rest);
+        Task<List<Review>> GetReviews(Restaurant p_rest);
     }
 }

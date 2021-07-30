@@ -16,41 +16,41 @@ namespace RRBL
     public interface IRestaurantBL
     {
         /// <summary>
-        /// Gets a specific restaraunt that matches with the restaurant object we give
+        /// Gets a list of Restaurants stored in our database
         /// </summary>
-        /// <param name="p_rest">The object that will get compared</param>
-        /// <returns>Returns the matching restaurant</returns>
-        Restaurant GetRestaurant(Restaurant p_rest);
+        /// <returns>Returns a list of Restaurant</returns>
+        Task<List<Restaurant>> GetAllRestaurant();
+
+        /// <summary>
+        /// It will get a specific restaurant
+        /// </summary>
+        /// <param name="p_rest">This restaurant object will be used to check the properties that should match in the database</param>
+        /// <returns>Will return the restaurant object from the database</returns>
+        Task<Restaurant> GetRestaurant(Restaurant p_rest);
         /// <summary>
         /// It will get a specific restaurant based on id
         /// </summary>
         /// <param name="p_id">the id to look for</param>
         /// <returns></returns>
-        Restaurant GetRestaurant(int p_id);
+        Task<Restaurant> GetRestaurant(int p_id);
 
         /// <summary>
-        /// Gives a list of restaurants stored in our database
+        /// It will add a restaurant in our database
         /// </summary>
-        /// <returns>Returns a List of restaurant</returns>
-        List<Restaurant> GetAllRestaurant();
-
-        /// <summary>
-        /// Will add a restaurant in our database
-        /// </summary>
-        /// <param name="p_rest">The restaurant object that will get added</param>
-        /// <returns>Returns the added restaurant</returns>
-        Restaurant AddRestaurant(Restaurant p_rest);
+        /// <param name="p_rest">This is the restaurant object that will be added to the database</param>
+        /// <returns>Will return the restaurant object we just added</returns>
+        Task<Restaurant> AddRestaurant(Restaurant p_rest);
         /// <summary>
         /// It will update a restaurant in our database
         /// </summary>
         /// <param name="p_rest">Passes the restaurant we will update</param>
         /// <returns></returns>
-        Restaurant UpdateRestaurant(Restaurant p_rest);
+        Task<Restaurant> UpdateRestaurant(Restaurant p_rest);
         /// <summary>
         /// It will delete a restaurant in our database
         /// </summary>
         /// <param name="p_rest">The restaurant it will delete</param>
         /// <returns></returns>
-        Restaurant DeleteRestaurant(Restaurant p_rest);
+        Task<Restaurant> DeleteRestaurant(Restaurant p_rest);
     }
 }

@@ -2,6 +2,7 @@
 using RRModel;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace RRBL
 {
@@ -19,35 +20,35 @@ namespace RRBL
         {
             _repo = p_repo;
         }
-        public Restaurant AddRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> AddRestaurant(Restaurant p_rest)
         {
-            if (_repo.GetRestaurant(p_rest) != null)
+            if (await _repo.GetRestaurant(p_rest) != null)
             {
                 throw new Exception("Restaurant already exists!");
             }
 
-            return _repo.AddRestaurant(p_rest);
+            return await _repo.AddRestaurant(p_rest);
         }
 
-        public Restaurant DeleteRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> DeleteRestaurant(Restaurant p_rest)
         {
-            if (_repo.GetRestaurant(p_rest) == null)
+            if (await _repo.GetRestaurant(p_rest) == null)
             {
                 throw new Exception("Restaurant does not exist");
             }
 
-            return _repo.DeleteRestaurant(p_rest);
+            return await _repo.DeleteRestaurant(p_rest);
         }
 
-        public List<Restaurant> GetAllRestaurant()
+        public async Task<List<Restaurant>> GetAllRestaurant()
         {
             //In this case, we have no BL logic to getting all restaurant so we will just return the list as is
-            return _repo.GetAllRestaurant();
+            return await _repo.GetAllRestaurant();
         }
 
-        public Restaurant GetRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> GetRestaurant(Restaurant p_rest)
         {
-            Restaurant found = _repo.GetRestaurant(p_rest);
+            Restaurant found = await _repo.GetRestaurant(p_rest);
 
             if (found == null)
             {
@@ -57,9 +58,9 @@ namespace RRBL
             return found;
         }
 
-        public Restaurant GetRestaurant(int p_id)
+        public async Task<Restaurant> GetRestaurant(int p_id)
         {
-            Restaurant found = _repo.GetRestaurant(p_id);
+            Restaurant found = await _repo.GetRestaurant(p_id);
 
             if (found == null)
             {
@@ -69,9 +70,9 @@ namespace RRBL
             return found;
         }
 
-        public Restaurant UpdateRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> UpdateRestaurant(Restaurant p_rest)
         {
-            _repo.UpdateRestaurant(p_rest);
+            await _repo.UpdateRestaurant(p_rest);
             return p_rest;
         }
     }
