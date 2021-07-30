@@ -20,6 +20,7 @@ namespace RRWebAPI.Controllers
         {
             _restBL = p_restBL;
         }
+
         // GET: api/<RestaurantController>
         [HttpGet]
         public async Task<IActionResult> GetAllRestaurant()
@@ -29,23 +30,23 @@ namespace RRWebAPI.Controllers
 
         // GET api/<RestaurantController>/5
         [HttpGet("get/{p_id}")]
-        public IActionResult GetRestaurantById(int p_id)
+        public async Task<IActionResult> GetRestaurantById(int p_id)
         {
-            return Ok(_restBL.GetRestaurant(p_id));
+            return Ok(await _restBL.GetRestaurant(p_id));
         }
 
         // POST api/<RestaurantController>
         [HttpPost("add")]
-        public IActionResult AddRestaurant([FromBody] Restaurant p_rest)
+        public async Task<IActionResult> AddRestaurant([FromBody] Restaurant p_rest)
         {
-            return Created("api/Restaurant/add", _restBL.AddRestaurant(p_rest));
+            return Created("api/Restaurant/add", await _restBL.AddRestaurant(p_rest));
         }
 
-        // DELETE api/<RestaurantController>/5
-        // [HttpDelete("delete/{id}")]
-        // public IActionResult Delete(int id)
-        // {
-        //     return Ok(_restBL.);
-        // }
+        //DELETE api/<RestaurantController>/5
+        [HttpDelete("delete/{p_id}")]
+        public async Task<IActionResult> DeleteRestaurant(int p_id)
+        {
+            return Ok(await _restBL.DeleteRestaurant(await _restBL.GetRestaurant(p_id)));
+        }
     }
 }
