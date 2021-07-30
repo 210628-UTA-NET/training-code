@@ -5,7 +5,6 @@ using System.Text.Json;
 using RRModel;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace RRDL
 {
@@ -23,37 +22,72 @@ namespace RRDL
             return p_rest;
         }
 
-        /*
-            First make the method into an async method using the keyword
-            Next make the return type of the method into a task
-                You have to import the namespace System.Threading.Task
-            Next use the await keyword so it knows what it needs to do in parallel in that method
-            Finally use System.Linq already made Async methods version of what you used
-        */
-        public async Task<List<Restaurant>> GetAllRestaurant()
+        public Review AddReview(Restaurant p_rest, Review p_rev)
+        {
+            Restaurant found = GetRestaurant(p_rest);
+            p_rev.RestaurantId = found.Id; 
+
+            _context.Reviews.Add(p_rev);
+            _context.SaveChanges();
+
+            return p_rev;
+        }
+
+        public Restaurant DeleteRestaurant(Restaurant p_rest)
+        {
+            Restaurant found = GetRestaurant(p_rest);
+
+            _context.Restaurants.Remove(found);
+            _context.SaveChanges();
+
+            return p_rest;
+        }
+
+        public List<Restaurant> GetAllRestaurant()
         {
             //Method Syntax way
-            return await _context.Restaurants.Select(rest => rest).ToListAsync();
+            return _context.Restaurants.Select(rest => rest).ToList();
         }
 
         public Restaurant GetRestaurant(Restaurant p_rest)
         {
-            return _context.Restaurants.AsNoTracking().FirstOrDefault(rest => rest.Name == p_rest.Name
-                                                       && rest.City == p_rest.City
-                                                       && rest.State == p_rest.State);
+            Restaurant found = _context.Restaurants
+                                .AsNoTracking() //Removes the entity id to being tracked (Helps us avoid that tracking error when we start using multiple repository methods in a sequence)
+                                .FirstOrDefault(rest => rest.Name == p_rest.Name
+                                                && rest.City == p_rest.City
+                                                && rest.State == p_rest.State);
+
+            if (found == null)
+            {
+                //Be careful with this since you might get null exception in your code because you are getting null
+                return null;
+            }
+
+            return found;
         }
 
         public Restaurant GetRestaurant(int p_id)
         {
-            return _context.Restaurants.Find(p_id);
+            Restaurant found = _context.Restaurants
+                .AsNoTracking()
+                .FirstOrDefault(rest => rest.Id == p_id);
+
+            if (found == null)
+            {
+                return null;
+            }
+
+            return found;
         }
+
 
         public List<Review> GetReviews(Restaurant p_rest)
         {
-            return _context.Reviews
-                .Where(rev => rev.RestaurantId == p_rest.Id) //This filters the review table to show only the one the matches with the correct restaurantID
-                .Select(rev => rev) //This selects each review from that filtered list
-                .ToList();//This will convert it into a List Collection
+            return _context.Reviews.Where( //Filter the list of reviews we will get
+                    rev => rev.RestaurantId == GetRestaurant(p_rest).Id
+                ).Select( //Select each review from the list after the filtering
+                    rev => rev
+                ).ToList(); //Convert it to a List collection
         }
 
         public Restaurant UpdateRestaurant(Restaurant p_rest)

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using RRModel;
 
 namespace RRDL
@@ -14,7 +13,7 @@ namespace RRDL
         /// Gets a list of Restaurants stored in our database
         /// </summary>
         /// <returns>Returns a list of Restaurant</returns>
-        Task<List<Restaurant>> GetAllRestaurant();
+        List<Restaurant> GetAllRestaurant();
 
         /// <summary>
         /// It will get a specific restaurant
@@ -23,28 +22,41 @@ namespace RRDL
         /// <returns>Will return the restaurant object from the database</returns>
         Restaurant GetRestaurant(Restaurant p_rest);
         /// <summary>
-        /// It will get a specific restaurant using the id
+        /// It will get a specific restaurant based on id
         /// </summary>
-        /// <param name="p_id">The Id of the restaurant</param>
-        /// <returns>Will return the restaurant object from the database</returns>
+        /// <param name="p_id">the id to look for</param>
+        /// <returns></returns>
         Restaurant GetRestaurant(int p_id);
 
         /// <summary>
-        /// It will ad a restaurant in our database
+        /// It will add a restaurant in our database
         /// </summary>
         /// <param name="p_rest">This is the restaurant object that will be added to the database</param>
         /// <returns>Will return the restaurant object we just added</returns>
         Restaurant AddRestaurant(Restaurant p_rest);
         /// <summary>
-        /// It will update a restaurant in the database
+        /// It will update a restaurant in our database
         /// </summary>
-        /// <param name="p_rest">This is the restaurant it will be updating</param>
+        /// <param name="p_rest">Passes the restaurant we will update</param>
         /// <returns></returns>
         Restaurant UpdateRestaurant(Restaurant p_rest);
         /// <summary>
-        /// This will get all the reviews from a restaurant
+        /// It will delete a restaurant in our database
         /// </summary>
-        /// <param name="p_rest">This is the resturant it will get the reviews from</param>
+        /// <param name="p_rest">The restaurant it will delete</param>
+        /// <returns></returns>
+        Restaurant DeleteRestaurant(Restaurant p_rest);
+        /// <summary>
+        /// It will add a review and attach it to a restaurant
+        /// </summary>
+        /// <param name="p_rest">Passes the restaurant we will attach the review to</param>
+        /// <param name="p_rev">The review we will add to the restaurant</param>
+        /// <returns></returns>
+        Review AddReview(Restaurant p_rest, Review p_rev);
+        /// <summary>
+        /// It will get all the reviews
+        /// </summary>
+        /// <param name="p_rest">Gets the reviews that is attached to that restaurant</param>
         /// <returns></returns>
         List<Review> GetReviews(Restaurant p_rest);
     }
