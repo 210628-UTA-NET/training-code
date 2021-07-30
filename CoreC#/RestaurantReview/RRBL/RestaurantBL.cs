@@ -1,33 +1,48 @@
+﻿using RRDL;
+using RRModel;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using RRDL;
-using RRModel;
 
 namespace RRBL
 {
     public class RestaurantBL : IRestaurantBL
     {
-        /// <summary>
-        /// We are defining the dependenices this class needs in the constructor
-        /// We do it this way (with interfaces) because we can easily switch out the implementation of RRDL when we want to change data source 
-        /// (change from file system into database stored in the cloud)
-        /// </summary>
         private IRepository _repo;
+
+        /// <summary>
+        /// We are defining the dependencies this class needs in the constructor
+        /// We do it this way (with interfaces) because we can easily switch out which implementation we will be using later on
+        /// Such as later on, (next week) we will switch out our data storage to instead of file storage, we will connect to a cloud service
+        /// </summary>
+        /// <param name="p_repo">Passes the repository object from our DLs</param>
         public RestaurantBL(IRepository p_repo)
         {
             _repo = p_repo;
         }
-
         public Restaurant AddRestaurant(Restaurant p_rest)
         {
-            p_rest.State = p_rest.State.ToUpper();
+            if (_repo.GetRestaurant(p_rest) != null)
+            {
+                throw new Exception("Restaurant already exists!");
+            }
+
             return _repo.AddRestaurant(p_rest);
         }
 
-        public async Task<List<Restaurant>> GetAllRestaurant()
+        public Restaurant DeleteRestaurant(Restaurant p_rest)
         {
-            return await _repo.GetAllRestaurant();
+            if (_repo.GetRestaurant(p_rest) == null)
+            {
+                throw new Exception("Restaurant does not exist");
+            }
+
+            return _repo.DeleteRestaurant(p_rest);
+        }
+
+        public List<Restaurant> GetAllRestaurant()
+        {
+            //In this case, we have no BL logic to getting all restaurant so we will just return the list as is
+            return _repo.GetAllRestaurant();
         }
 
         public Restaurant GetRestaurant(Restaurant p_rest)
@@ -36,7 +51,7 @@ namespace RRBL
 
             if (found == null)
             {
-                throw new Exception("The Restaurant was not found!");
+                throw new Exception("Restaurant is not found");
             }
 
             return found;
@@ -48,10 +63,16 @@ namespace RRBL
 
             if (found == null)
             {
-                throw new Exception("The Restaurant was not found!");
+                throw new Exception("Restaurant is not found");
             }
 
             return found;
+        }
+
+        public Restaurant UpdateRestaurant(Restaurant p_rest)
+        {
+            _repo.UpdateRestaurant(p_rest);
+            return p_rest;
         }
     }
 }
