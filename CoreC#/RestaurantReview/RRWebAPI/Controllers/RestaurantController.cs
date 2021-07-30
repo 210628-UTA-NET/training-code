@@ -41,16 +41,11 @@ namespace RRWebAPI.Controllers
             return Created("api/Restaurant/add", _restBL.AddRestaurant(p_rest));
         }
 
-        // PUT api/<RestaurantController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
         // DELETE api/<RestaurantController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        // [HttpDelete("delete/{id}")]
+        // public IActionResult Delete(int id)
+        // {
+        //     return Ok(_restBL.);
+        // }
     }
 }
