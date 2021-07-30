@@ -19,24 +19,24 @@ namespace RRBL
 
         public async Task<Review> AddReview(Restaurant p_rest, Review p_rev)
         {
-            if (await _repo.GetRestaurant(p_rest) == null)
+            if (await _repo.GetRestaurantAsync(p_rest) == null)
             {
                 throw new Exception("The restaurant does not exist!");
             }
 
-            await _repo.AddReview(p_rest, p_rev);
+            await _repo.AddReviewAsync(p_rest, p_rev);
 
             return p_rev;
         }
 
         public async Task<List<Review>> GetReviews(Restaurant p_rest)
         {
-            if (await _repo.GetRestaurant(p_rest) == null)
+            if (await _repo.GetRestaurantAsync(p_rest) == null)
             {
                 throw new Exception("The restaurant does not exist!");
             }
 
-            return await _repo.GetReviews(p_rest);
+            return await _repo.GetReviewsAsync(p_rest);
         }
     }
 }

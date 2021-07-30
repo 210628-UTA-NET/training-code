@@ -40,6 +40,7 @@ namespace RRWebAPI
 
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IRestaurantBL, RestaurantBL>();
+            services.AddScoped<IReviewBL, ReviewBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

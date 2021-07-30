@@ -31,7 +31,7 @@ namespace RRTest
                 List<Restaurant> restaurants;
 
                 //Act
-                restaurants = await repo.GetAllRestaurant();
+                restaurants = await repo.GetAllRestaurantAsync();
 
                 //Assert
                 Assert.NotNull(restaurants);
@@ -52,7 +52,7 @@ namespace RRTest
                     State = "Texas"
                 };
 
-                Restaurant found = await repo.GetRestaurant(tryToFindRest);
+                Restaurant found = await repo.GetRestaurantAsync(tryToFindRest);
 
                 Assert.NotNull(found);
                 Assert.Equal(found.Name, tryToFindRest.Name);
@@ -66,7 +66,7 @@ namespace RRTest
             {
                 IRepository repo = new Repository(context);
 
-                Restaurant found = await repo.GetRestaurant(1);
+                Restaurant found = await repo.GetRestaurantAsync(1);
 
                 Assert.NotNull(found);
                 Assert.Equal("Kura sushi", found.Name);
@@ -79,12 +79,12 @@ namespace RRTest
             using (var context = new RRDBContext(_options))
             {
                 IRepository repo = new Repository(context);
-                Restaurant tryUpdate = await repo.GetRestaurant(1);
+                Restaurant tryUpdate = await repo.GetRestaurantAsync(1);
 
                 tryUpdate.Name = "Kura Sushi The Better Version";
-                await repo.UpdateRestaurant(tryUpdate);
+                await repo.UpdateRestaurantAsync(tryUpdate);
 
-                tryUpdate = await repo.GetRestaurant(1);
+                tryUpdate = await repo.GetRestaurantAsync(1);
                 Assert.Equal("Kura Sushi The Better Version", tryUpdate.Name);
             }
         }

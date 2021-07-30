@@ -25,28 +25,28 @@ namespace RRWebAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllRestaurant()
         {
-            return Ok(await _restBL.GetAllRestaurant());
+            return Ok(await _restBL.GetAllRestaurantAsync());
         }
 
         // GET api/<RestaurantController>/5
         [HttpGet("get/{p_id}")]
         public async Task<IActionResult> GetRestaurantById(int p_id)
         {
-            return Ok(await _restBL.GetRestaurant(p_id));
+            return Ok(await _restBL.GetRestaurantAsync(p_id));
         }
 
         // POST api/<RestaurantController>
         [HttpPost("add")]
         public async Task<IActionResult> AddRestaurant([FromBody] Restaurant p_rest)
         {
-            return Created("api/Restaurant/add", await _restBL.AddRestaurant(p_rest));
+            return Created("api/Restaurant/add", await _restBL.AddRestaurantAsync(p_rest));
         }
 
         //DELETE api/<RestaurantController>/5
         [HttpDelete("delete/{p_id}")]
         public async Task<IActionResult> DeleteRestaurant(int p_id)
         {
-            return Ok(await _restBL.DeleteRestaurant(await _restBL.GetRestaurant(p_id)));
+            return Ok(await _restBL.DeleteRestaurantAsync(await _restBL.GetRestaurantAsync(p_id)));
         }
     }
 }

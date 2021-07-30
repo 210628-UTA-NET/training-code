@@ -20,35 +20,35 @@ namespace RRBL
         {
             _repo = p_repo;
         }
-        public async Task<Restaurant> AddRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> AddRestaurantAsync(Restaurant p_rest)
         {
-            if (await _repo.GetRestaurant(p_rest) != null)
+            if (await _repo.GetRestaurantAsync(p_rest) != null)
             {
                 throw new Exception("Restaurant already exists!");
             }
 
-            return await _repo.AddRestaurant(p_rest);
+            return await _repo.AddRestaurantAsync(p_rest);
         }
 
-        public async Task<Restaurant> DeleteRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> DeleteRestaurantAsync(Restaurant p_rest)
         {
-            if (await _repo.GetRestaurant(p_rest) == null)
+            if (await _repo.GetRestaurantAsync(p_rest) == null)
             {
                 throw new Exception("Restaurant does not exist");
             }
 
-            return await _repo.DeleteRestaurant(p_rest);
+            return await _repo.DeleteRestaurantAsync(p_rest);
         }
 
-        public async Task<List<Restaurant>> GetAllRestaurant()
+        public async Task<List<Restaurant>> GetAllRestaurantAsync()
         {
             //In this case, we have no BL logic to getting all restaurant so we will just return the list as is
-            return await _repo.GetAllRestaurant();
+            return await _repo.GetAllRestaurantAsync();
         }
 
-        public async Task<Restaurant> GetRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> GetRestaurantAsync(Restaurant p_rest)
         {
-            Restaurant found = await _repo.GetRestaurant(p_rest);
+            Restaurant found = await _repo.GetRestaurantAsync(p_rest);
 
             if (found == null)
             {
@@ -58,9 +58,9 @@ namespace RRBL
             return found;
         }
 
-        public async Task<Restaurant> GetRestaurant(int p_id)
+        public async Task<Restaurant> GetRestaurantAsync(int p_id)
         {
-            Restaurant found = await _repo.GetRestaurant(p_id);
+            Restaurant found = await _repo.GetRestaurantAsync(p_id);
 
             if (found == null)
             {
@@ -70,9 +70,9 @@ namespace RRBL
             return found;
         }
 
-        public async Task<Restaurant> UpdateRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> UpdateRestaurantAsync(Restaurant p_rest)
         {
-            await _repo.UpdateRestaurant(p_rest);
+            await _repo.UpdateRestaurantAsync(p_rest);
             return p_rest;
         }
     }

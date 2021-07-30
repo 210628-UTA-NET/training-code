@@ -16,16 +16,16 @@ namespace RRDL
         {
             _context = p_context;
         }
-        public async Task<Restaurant> AddRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> AddRestaurantAsync(Restaurant p_rest)
         {
             await _context.Restaurants.AddAsync(p_rest);
             await _context.SaveChangesAsync();
             return p_rest;
         }
 
-        public async Task<Review> AddReview(Restaurant p_rest, Review p_rev)
+        public async Task<Review> AddReviewAsync(Restaurant p_rest, Review p_rev)
         {
-            Restaurant found = await GetRestaurant(p_rest);
+            Restaurant found = await GetRestaurantAsync(p_rest);
             p_rev.RestaurantId = found.Id; 
 
             await _context.Reviews.AddAsync(p_rev);
@@ -34,9 +34,9 @@ namespace RRDL
             return p_rev;
         }
 
-        public async Task<Restaurant> DeleteRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> DeleteRestaurantAsync(Restaurant p_rest)
         {
-            Restaurant found = await GetRestaurant(p_rest);
+            Restaurant found = await GetRestaurantAsync(p_rest);
 
             _context.Restaurants.Remove(found);
             await _context.SaveChangesAsync();
@@ -44,13 +44,13 @@ namespace RRDL
             return p_rest;
         }
 
-        public async Task<List<Restaurant>> GetAllRestaurant()
+        public async Task<List<Restaurant>> GetAllRestaurantAsync()
         {
             //Method Syntax way
             return await _context.Restaurants.Select(rest => rest).ToListAsync();
         }
 
-        public async Task<Restaurant> GetRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> GetRestaurantAsync(Restaurant p_rest)
         {
             Restaurant found = await _context.Restaurants
                                 .AsNoTracking() //Removes the entity id to being tracked (Helps us avoid that tracking error when we start using multiple repository methods in a sequence)
@@ -67,7 +67,7 @@ namespace RRDL
             return found;
         }
 
-        public async Task<Restaurant> GetRestaurant(int p_id)
+        public async Task<Restaurant> GetRestaurantAsync(int p_id)
         {
             Restaurant found = await _context.Restaurants
                 .AsNoTracking()
@@ -82,16 +82,16 @@ namespace RRDL
         }
 
 
-        public async Task<List<Review>> GetReviews(Restaurant p_rest)
+        public async Task<List<Review>> GetReviewsAsync(Restaurant p_rest)
         {
             return await _context.Reviews.Where( //Filter the list of reviews we will get
-                    rev => rev.RestaurantId == GetRestaurant(p_rest).Id
+                    rev => rev.RestaurantId == GetRestaurantAsync(p_rest).Id
                 ).Select( //Select each review from the list after the filtering
                     rev => rev
                 ).ToListAsync(); //Convert it to a List collection
         }
 
-        public async Task<Restaurant> UpdateRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> UpdateRestaurantAsync(Restaurant p_rest)
         {
             _context.Restaurants.Update(p_rest);
             await _context.SaveChangesAsync();
