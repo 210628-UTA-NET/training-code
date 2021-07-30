@@ -22,7 +22,7 @@ namespace RRTest
         }
 
         [Fact]
-        public void GetAllRestaurantShouldGetAllRestaurant()
+        public async void GetAllRestaurantShouldGetAllRestaurant()
         {
             using (var context = new RRDBContext(_options))
             {
@@ -31,7 +31,7 @@ namespace RRTest
                 List<Restaurant> restaurants;
 
                 //Act
-                restaurants = repo.GetAllRestaurant();
+                restaurants = await repo.GetAllRestaurant();
 
                 //Assert
                 Assert.NotNull(restaurants);
@@ -40,7 +40,7 @@ namespace RRTest
         }
 
         [Fact]
-        public void GetRestaurantShouldGetASpecificRestaurant()
+        public async void GetRestaurantShouldGetASpecificRestaurant()
         {
             using (var context = new RRDBContext(_options))
             {
@@ -52,7 +52,7 @@ namespace RRTest
                     State = "Texas"
                 };
 
-                Restaurant found = repo.GetRestaurant(tryToFindRest);
+                Restaurant found = await repo.GetRestaurant(tryToFindRest);
 
                 Assert.NotNull(found);
                 Assert.Equal(found.Name, tryToFindRest.Name);
@@ -60,13 +60,13 @@ namespace RRTest
         }
 
         [Fact]
-        public void GetRestaurantByIdShouldGetASpecificRestaurant()
+        public async void GetRestaurantByIdShouldGetASpecificRestaurant()
         {
             using (var context = new RRDBContext(_options))
             {
                 IRepository repo = new Repository(context);
 
-                Restaurant found = repo.GetRestaurant(1);
+                Restaurant found = await repo.GetRestaurant(1);
 
                 Assert.NotNull(found);
                 Assert.Equal("Kura sushi", found.Name);
@@ -74,34 +74,18 @@ namespace RRTest
         }
 
         [Fact]
-        public void UpdateRestaurantShouldChangePropertiesInDB()
+        public async void UpdateRestaurantShouldChangePropertiesInDB()
         {
             using (var context = new RRDBContext(_options))
             {
                 IRepository repo = new Repository(context);
-                Restaurant tryUpdate = repo.GetRestaurant(1);
+                Restaurant tryUpdate = await repo.GetRestaurant(1);
 
                 tryUpdate.Name = "Kura Sushi The Better Version";
-                repo.UpdateRestaurant(tryUpdate);
+                await repo.UpdateRestaurant(tryUpdate);
 
-                tryUpdate = repo.GetRestaurant(1);
+                tryUpdate = await repo.GetRestaurant(1);
                 Assert.Equal("Kura Sushi The Better Version", tryUpdate.Name);
-            }
-        }
-
-        [Fact]
-        public void GetReviewsShouldGetAllReviewsFromARestaurant()
-        {
-            using (var context = new RRDBContext(_options))
-            {
-                IRepository repo = new Repository(context);
-                Restaurant test = repo.GetRestaurant(2);
-                List<Review> reviews;
-
-                reviews = repo.GetReviews(test);
-
-                Assert.NotNull(reviews);
-                Assert.Equal(2, reviews.Count);
             }
         }
 
