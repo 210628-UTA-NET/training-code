@@ -5,6 +5,7 @@ using System.Text.Json;
 using RRModel;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace RRDL
 {
@@ -15,45 +16,45 @@ namespace RRDL
         {
             _context = p_context;
         }
-        public Restaurant AddRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> AddRestaurant(Restaurant p_rest)
         {
-            _context.Restaurants.Add(p_rest);
-            _context.SaveChanges();
+            await _context.Restaurants.AddAsync(p_rest);
+            await _context.SaveChangesAsync();
             return p_rest;
         }
 
-        public Review AddReview(Restaurant p_rest, Review p_rev)
+        public async Task<Review> AddReview(Restaurant p_rest, Review p_rev)
         {
-            Restaurant found = GetRestaurant(p_rest);
+            Restaurant found = await GetRestaurant(p_rest);
             p_rev.RestaurantId = found.Id; 
 
-            _context.Reviews.Add(p_rev);
-            _context.SaveChanges();
+            await _context.Reviews.AddAsync(p_rev);
+            await _context.SaveChangesAsync();
 
             return p_rev;
         }
 
-        public Restaurant DeleteRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> DeleteRestaurant(Restaurant p_rest)
         {
-            Restaurant found = GetRestaurant(p_rest);
+            Restaurant found = await GetRestaurant(p_rest);
 
             _context.Restaurants.Remove(found);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return p_rest;
         }
 
-        public List<Restaurant> GetAllRestaurant()
+        public async Task<List<Restaurant>> GetAllRestaurant()
         {
             //Method Syntax way
-            return _context.Restaurants.Select(rest => rest).ToList();
+            return await _context.Restaurants.Select(rest => rest).ToListAsync();
         }
 
-        public Restaurant GetRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> GetRestaurant(Restaurant p_rest)
         {
-            Restaurant found = _context.Restaurants
+            Restaurant found = await _context.Restaurants
                                 .AsNoTracking() //Removes the entity id to being tracked (Helps us avoid that tracking error when we start using multiple repository methods in a sequence)
-                                .FirstOrDefault(rest => rest.Name == p_rest.Name
+                                .FirstOrDefaultAsync(rest => rest.Name == p_rest.Name
                                                 && rest.City == p_rest.City
                                                 && rest.State == p_rest.State);
 
@@ -66,11 +67,11 @@ namespace RRDL
             return found;
         }
 
-        public Restaurant GetRestaurant(int p_id)
+        public async Task<Restaurant> GetRestaurant(int p_id)
         {
-            Restaurant found = _context.Restaurants
+            Restaurant found = await _context.Restaurants
                 .AsNoTracking()
-                .FirstOrDefault(rest => rest.Id == p_id);
+                .FirstOrDefaultAsync(rest => rest.Id == p_id);
 
             if (found == null)
             {
@@ -81,19 +82,19 @@ namespace RRDL
         }
 
 
-        public List<Review> GetReviews(Restaurant p_rest)
+        public async Task<List<Review>> GetReviews(Restaurant p_rest)
         {
-            return _context.Reviews.Where( //Filter the list of reviews we will get
+            return await _context.Reviews.Where( //Filter the list of reviews we will get
                     rev => rev.RestaurantId == GetRestaurant(p_rest).Id
                 ).Select( //Select each review from the list after the filtering
                     rev => rev
-                ).ToList(); //Convert it to a List collection
+                ).ToListAsync(); //Convert it to a List collection
         }
 
-        public Restaurant UpdateRestaurant(Restaurant p_rest)
+        public async Task<Restaurant> UpdateRestaurant(Restaurant p_rest)
         {
             _context.Restaurants.Update(p_rest);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return p_rest;
         }
     }
