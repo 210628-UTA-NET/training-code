@@ -17,6 +17,10 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
+    - name: Setup ASP .NET
+      uses: nuget/setup-nuget@v1
+      with:
+        nuget-version: ${{ env.NUGET_VERSION}}
     - name: Restore dependencies
       run: dotnet restore CoreC#/RestaurantReview/
     - name: Build
