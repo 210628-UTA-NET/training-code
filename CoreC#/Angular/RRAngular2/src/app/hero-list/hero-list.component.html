@@ -1,0 +1,35 @@
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <th>
+                Image
+                <button (click) = "toggleImage()">ToggleImage</button>
+            </th>
+            <th>Name</th>
+            <th>Rank</th>
+            <th>Ability</th>
+            <th>Organization</th>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let superhero of heros">
+                <td>
+                    <img *ngIf="isVisible" [src]="superhero.image" width = "500">
+                </td>
+                <td>{{superhero.name}}</td>
+                <td>{{superhero.rank}}</td>
+                <td>{{superhero.ability}}</td>
+                <td>{{superhero.organization}}</td>
+            </tr>
+        </tbody>    
+    </table>
+</div>
