@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PokemonComponent } from './pokemon/pokemon.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
       {path: "superhero", component: HeroListComponent},
       {path: "pokemon", component: PokemonComponent}
     ]),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [], //This is where you reference services
   bootstrap: [AppComponent] //This is first loaded component/code in the angular application

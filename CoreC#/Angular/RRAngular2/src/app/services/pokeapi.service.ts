@@ -8,12 +8,17 @@ import { IPokemon } from "./poke";
 })
 export class PokeapiService {
 
-  private url = "https://pokeapi.co/api/v2/pokemon/pikachu";
+  private url = "https://pokeapi.co/api/v2/pokemon/";
 
   constructor(private http: HttpClient) { }
 
   getPikachu() : Observable<IPokemon>
   {
-    return this.http.get<IPokemon>(this.url);
+    return this.http.get<IPokemon>(this.url + "pikachu");
+  }
+
+  getPokemon(poke: string) : Observable<IPokemon>
+  {
+    return this.http.get<IPokemon>(this.url + poke);
   }
 }
