@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ISuperhero } from "./hero";
 
 @Component({
@@ -9,9 +10,11 @@ import { ISuperhero } from "./hero";
 export class HeroListComponent implements OnInit {
 
   heros:ISuperhero[]
-  isVisible: boolean = true;
+  filteredHeros:ISuperhero[]
+  isVisible: boolean;
+  heroListFilter:string;
 
-  constructor() 
+  constructor(private router: Router) 
   {
     this.heros = [{ //Hard coded values to add in our ISuperhero array
       name: 'Frozone',
@@ -42,13 +45,48 @@ export class HeroListComponent implements OnInit {
       organization: 'the hero association',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnx0maPoLAqImOmsoTnxRwBronngiLYfeOVYFSSs2UBLsjXDDT&s'
   }];
+
+  this.filteredHeros = this.heros;
   }
 
+  
+  public set HeroListFilter(v : string) 
+  {
+    this.heroListFilter = v;
+
+    this.filteredHeros = this.heroListFilter ? this.performFilter(this.heroListFilter) : this.heros;
+  }
+
+  
+  public get HeroListFilter() : string {
+    return this.heroListFilter;
+  }
+  
+  
+
   ngOnInit(): void {
+    this.isVisible = true;
   }
 
   toggleImage()
   {
     this.isVisible = !this.isVisible;
+  }
+
+  performFilter(filterBy:string) : ISuperhero[]
+  {
+    filterBy = filterBy.toLowerCase();
+
+    let tempHero:ISuperhero[];
+
+    tempHero = this.heros
+      .filter((hero:ISuperhero) => hero.name.toLowerCase().indexOf(filterBy) !== -1);
+
+      return tempHero;
+  }
+
+  goToPokemon()
+  {
+    this.router.navigate(["/pokemon"]);
   }
 }
