@@ -22,7 +22,8 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
     RouterModule.forRoot([
       {path: "superhero", component: HeroListComponent},
       {path: "pokemon", component: PokemonComponent},
-      {path: "restaurant", component: RestaurantComponent}
+      {path: "restaurant", component: RestaurantComponent},
+      {path: "**", redirectTo:"superhero"}
     ]),
     HttpClientModule,
     ReactiveFormsModule
