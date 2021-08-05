@@ -17,4 +17,9 @@ export class RrapiService {
     return this.http.get<IRestaurant[]>(this.url + "Restaurant");
   }
 
+  addRestaurant(newRest: IRestaurant) : Observable<IRestaurant>
+  {
+    return this.http.post<IRestaurant>(this.url + "Restaurant/add", newRest);
+  }
+
 }
