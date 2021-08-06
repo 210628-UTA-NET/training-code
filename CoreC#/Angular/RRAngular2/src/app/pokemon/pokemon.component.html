@@ -1,9 +1,9 @@
-<div class="container">
+<div @fade class="container">
     <p>{{this.currentPokemon.name}}</p>
-    <button class="btn btn-primary" (click) = "getPikachu()">Get Pikachu</button>
+    <button id = "buttonOne" class="btn btn-primary" (click) = "getPikachu()">Get Pikachu</button>
 </div>
 
-<div class="container">
+<div @move class="container">
     <form class="form-group" style="width: 30%;" [formGroup]="pokeGroup">
         <label>Pokemon Id</label>
         <input type="text" class="form-control" formControlName = "id">

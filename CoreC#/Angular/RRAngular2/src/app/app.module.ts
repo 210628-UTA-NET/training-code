@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppComponent } from './app.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
@@ -26,7 +27,8 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
       {path: "**", redirectTo:"superhero"}
     ]),
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [], //This is where you reference services
   bootstrap: [AppComponent] //This is first loaded component/code in the angular application

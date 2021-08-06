@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { IPokemon } from '../services/poke';
@@ -6,7 +7,23 @@ import { PokeapiService } from "../services/pokeapi.service";
 @Component({
   selector: 'app-pokemon',
   templateUrl: './pokemon.component.html',
-  styleUrls: ['./pokemon.component.css']
+  styleUrls: ['./pokemon.component.css'],
+  animations: [
+    //Will trigger whenever you change the state of your component
+    trigger("fade", [
+      transition("void => *", [ //Transition will change the style of the DOM whenever a component changes its state (non-existing to existing)
+        style({opacity:0}),
+        animate(500, style({opacity:1}))
+      ])
+    ]),
+
+    trigger("move", [
+      transition("void => *", [
+        animate(200, style({transform: "translateX(5%)"})),
+        animate(200, style({transform: "translateX(0)"})),
+      ])
+    ])
+  ]
 })
 export class PokemonComponent implements OnInit {
 
