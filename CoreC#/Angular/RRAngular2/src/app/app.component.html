@@ -10,10 +10,13 @@
           <a class="nav-link active" aria-current="page" routerLink = "/superhero">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink = "/pokemon">Pokemon</a>
+          <a class="nav-link" routerLink = "/pokemon" *ngIf="auth.isAuthenticated$ | async">Pokemon</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink = "/restaurant">Restaurant</a>
+        </li>
+        <li class="nav-item">
+          <app-auth-login></app-auth-login>
         </li>
       </ul>
     </div>
