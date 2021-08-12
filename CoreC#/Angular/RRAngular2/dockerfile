@@ -1,0 +1,27 @@
+#Declaring the environment we use to create our angular environment
+from node:latest as build
+
+#Setting our working directory
+#workdir is a combination of mkdir and cd 
+#meaning it will create the folder and change your directory to it
+workdir /usr/local/app
+
+#Copying our angular project to that working directory
+# ./ is the relative path of where the docker file is
+copy ./ /usr/local/app
+
+#Restore our dependencies for this project
+run npm install
+
+#Build that application
+run npm run build
+
+#Serving the app with the nginx server
+from nginx:latest
+
+copy --from=build /usr/local/app/dist/RRAngular2 /usr/share/nginx/html
+
+#exposing this port because by default nginx deploys the app in that port
+expose 80
+
+#docker build -t <username>/<nameOfImage>:<CurrentVersionOfImage> .

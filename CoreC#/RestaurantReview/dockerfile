@@ -1,0 +1,33 @@
+#.NET 5 SDK to use
+from mcr.microsoft.com/dotnet/sdk:5.0 as build
+
+#Setting our working directory
+workdir /app
+
+#Copy all our projects to make this application work
+copy *.sln ./
+copy RRBL/*.csproj RRBL/
+copy RRDL/*.csproj RRDL/
+copy RRModels/*.csproj RRModels/
+copy RRTest/*.csproj RRTest/
+copy RRWebAPI/*.csproj RRWebAPI/
+
+#Restore those dependencies
+run cd RRWebAPI && dotnet restore
+
+copy . ./
+
+#Creating that publish folder to be deployed
+run dotnet publish RRWebAPI -c Release -o publish --no-restore
+
+#We are setting our environment to .NET runtime to save space
+from mcr.microsoft.com/dotnet/aspnet:5.0 as runtime
+
+workdir /app
+copy --from=build /app/publish ./
+
+#CMD to set that RRWebAPI.dll (assembly) will beour default entrypoint
+cmd ["dotnet", "RRWebAPI.dll"]
+
+#Expose to port 80
+expose 80
